@@ -10,8 +10,8 @@ public class Hero : MonoBehaviour
 
     //Fields control the moevement of the ship
     public float speed = 30;
-    public float rollMult = -45;
-    public float pitchMult = 30;
+    public float rollMult = -30;
+    public float pitchMult = 20;
 
     [Header("Set Dynamically")]
     public float shieldLevel = 1;
