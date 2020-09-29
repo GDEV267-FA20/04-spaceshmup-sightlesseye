@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     public float health = 10;
     public int score = 100;
 
+    private BoundsCheck bndCheck;
+
     //This is a Property: a method that acts as a field
     public Vector3 pos {
         get {
@@ -20,9 +22,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void Awake() {
+        bndCheck = GetComponent<BoundsCheck>();
+    }
+
     // Update is called once per frame
     void Update() {
         Move();
+        if(bndCheck != null && bndCheck.offDown) {
+            // object must be off bottom of screen
+            if(pos.y < bndCheck.camHeight - bndCheck.radius) {
+                Destroy(gameObject);
+            }
+        }
     }
 
     public virtual void Move() {
