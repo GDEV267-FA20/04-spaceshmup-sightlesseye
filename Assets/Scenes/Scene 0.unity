@@ -518,7 +518,7 @@ MonoBehaviour:
   - {fileID: 3669523001545696224, guid: e9d4cdde110b61e46925e8e92d3baa0b, type: 3}
   - {fileID: 7808116259212011667, guid: eae5f195fce452146a5859307e3a75a7, type: 3}
   enemySpawnPerSecond: 0.5
-  enemyDefaultPadding: 1.5
+  enemyDefaultPadding: 2
 --- !u!114 &358198636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,7 +731,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22188e18d7c0a904e83fafe7dcbc0cd0, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
