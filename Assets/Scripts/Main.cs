@@ -47,15 +47,13 @@ public class Main : MonoBehaviour
         Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public void DelayedRestart (float delay) {
+        //invoke Restart() in delay seconds
+        Invoke("Restart", delay);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Restart() {
+        //reload scene to restart game
+        SceneManager.LoadScene("Scene 0");
     }
 }
