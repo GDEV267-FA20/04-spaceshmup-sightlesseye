@@ -42,4 +42,14 @@ public class Enemy : MonoBehaviour
         tempPos.y -= speed * Time.deltaTime;
         pos = tempPos;
     }
+
+    void OnCollisionEnter(Collision coll) {
+        GameObject otherGO = coll.gameObject;
+        if(otherGO.tag == "ProjectileHero") {
+            Destroy(otherGO);           //Destroy the collided projectile
+            Destroy(gameObject);        //Destroy this Enemy GameObject
+        } else {
+            print("Enemy hit by non-ProjectileHero: " + otherGO.name);
+        } 
+    }
 }
