@@ -39,6 +39,10 @@ public class Enemy2 : Enemy0
 
     // Update is called once per frame
     public override void Update() {
+        if (showingDamage && Time.time > damageDoneTime) {
+            UnShowDamage();
+        }
+
         //Bezier curves work based on u value between 0 and 1
         float u = (Time.time - birthTime) / lifeTime;
 
