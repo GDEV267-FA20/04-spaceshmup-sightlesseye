@@ -15,6 +15,7 @@ public class Hero : MonoBehaviour
     public float gameStartDelay = 2f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
+    public Weapon[] weapons;
 
     [Header("Set Dynamically")]
     [SerializeField]
@@ -94,9 +95,21 @@ public class Hero : MonoBehaviour
         {                       //If shield was triggered by enemy, then...
             shieldLevel--;      //Decrease shield level, and...
             Destroy(go);        //destroy the enemy
+        }
+        else if (go.tag == "PowerUp") {
+            //if shield was triggered by a PowerUp
+            AbsorbPowerUp(go);
         } else {
             print("Triggered by non-Enemy: " + go.name);
         }
+    }
+
+    public void AbsorbPowerUp(GameObject go) {
+        PowerUp pu = go.GetComponent<PowerUp>();
+        switch (pu.type) {
+            //Leave switch bloock empty for now.
+        }
+        pu.AbsorbedBy(this.gameObject);
     }
 
     public float shieldLevel {

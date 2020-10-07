@@ -89,7 +89,7 @@ public class Enemy0 : MonoBehaviour
     }
 
     void ShowDamage() {
-        print("grilled cheese");
+        //print("grilled cheese");
         foreach(Material m in materials) {
             m.color = Color.white;
         }
@@ -98,7 +98,7 @@ public class Enemy0 : MonoBehaviour
     }
 
      protected void UnShowDamage() {
-        print("regular cheese");
+        //print("regular cheese");
         for(int i = 0; i < materials.Length; i++) {
             materials[i].color = originalColors[i];
         }
