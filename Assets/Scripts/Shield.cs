@@ -20,7 +20,7 @@ public class Shield : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        //Read current shield level from Hero Singelton
+        //Read current shield level from Hero Singleton
         int currLevel = Mathf.FloorToInt(Hero.S.shieldLevel);
         
         //If different from LevelShown
@@ -32,7 +32,7 @@ public class Shield : MonoBehaviour
         }
 
 
-        //rotate shield every frame based off fo time
+        //rotate shield every frame based off of time
         float rZ = -(rotationsPerSecond * Time.time * 360) % 360f;
         transform.rotation = Quaternion.Euler(0, 0, rZ);
     }

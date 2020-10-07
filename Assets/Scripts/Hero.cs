@@ -74,7 +74,7 @@ public class Hero : MonoBehaviour
         if (go.tag == "Enemy")
         {                       //If shield was triggered by enemy, then...
             shieldLevel--;      //Decrease shield level, and...
-            Destroy(go);        //and destroy the enemy
+            Destroy(go);        //destroy the enemy
         } else {
             print("Triggered by non-Enemy: " + go.name);
         }
