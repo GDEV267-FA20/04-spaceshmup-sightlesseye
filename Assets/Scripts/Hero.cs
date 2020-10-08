@@ -31,13 +31,17 @@ public class Hero : MonoBehaviour
     public WeaponFireDelegate fireDelegate;
 
 
-    void Awake() {
+    void Start() {
         if(S == null) {
             S = this;
         } else {
             Debug.LogError("Hero.Awake() - Attempted to assign second Hero.S!");
         }
         //fireDelegate += TempFire;
+
+        //reset the Weapons to start Hero with 1 blaster
+        ClearWeapons();
+        weapons[0].SetType(WeaponType.blaster);
     }
 
     // Update is called once per frame
@@ -55,11 +59,6 @@ public class Hero : MonoBehaviour
         //Rotate ship to make it feel dynamic
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
 
-        //Allows ship to fire!
-        //if(Input.GetKeyDown(KeyCode.Space))         {
-        //    TempFire();
-        //}
-
         //Now, we use the fireDelegate to fire Weapons
         //First, ensure button is pressed: Axis("Jump")
         //Then ensure that FireDelegate isn't null to avoid errors.
@@ -67,17 +66,6 @@ public class Hero : MonoBehaviour
             fireDelegate();
         }
     }
-
-    //void TempFire() {
-    //    GameObject projGO = Instantiate<GameObject>(projectilePrefab);
-    //    projGO.transform.position = transform.position;
-    //    Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
-    //    //rigidB.velocity = Vector3.up * projectileSpeed;
-    //    Projectile proj = projGO.GetComponent<Projectile>();
-    //    proj.type = WeaponType.blaster;
-    //    float tSpeed = Main.GetWeaponDefinition(proj.type).velocity;
-    //    rigidB.velocity = Vector3.up * speed;
-    //}
 
     void OnTriggerEnter(Collider other)
     {
@@ -107,7 +95,22 @@ public class Hero : MonoBehaviour
     public void AbsorbPowerUp(GameObject go) {
         PowerUp pu = go.GetComponent<PowerUp>();
         switch (pu.type) {
-            //Leave switch bloock empty for now.
+            case WeaponType.shield:
+                shieldLevel++;
+                break;
+
+            default:
+                if(pu.type == weapons[0].type) {        //If it is the same type
+                    Weapon w = GetEmptyWeaponSlot();
+                    if(w != null) {
+                        //Set it to pu.type
+                        w.SetType(pu.type);
+                    } 
+                } else {                                //If it is the same type
+                    ClearWeapons();
+                    weapons[0].SetType(pu.type);
+                }
+                break;
         }
         pu.AbsorbedBy(this.gameObject);
     }
@@ -125,6 +128,21 @@ public class Hero : MonoBehaviour
                 //tell Main.S to restart game after delay
                 Main.S.DelayedRestart(gameStartDelay);
             }
+        }
+    }
+
+    Weapon GetEmptyWeaponSlot() {
+        for(int i = 0; i < weapons.Length; i++) {
+            if(weapons[i].type == WeaponType.none) {
+                return (weapons[i]);
+            }
+        }
+        return null;
+    }
+
+    void ClearWeapons() {
+        foreach (Weapon w in weapons) {
+            w.SetType(WeaponType.none);
         }
     }
 }
