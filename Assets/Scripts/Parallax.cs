@@ -10,7 +10,7 @@ public class Parallax : MonoBehaviour
     public float scrollSpeed = -15f;
      
     // motionMult controls how much panels react to player movement 
-    public float motionMult = 0.25f; 
+    public float motionMult = 0.10f; 
     private float panelHt; // Height of each panel 
     private float depth;   // Depth of panels (that is, pos.z) 
     
