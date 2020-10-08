@@ -316,7 +316,7 @@ Transform:
   m_GameObject: {fileID: 7808116259212011667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20, y: 10, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 7808116259643491675}
   - {fileID: 7808116258403439355}
@@ -393,19 +393,19 @@ MonoBehaviour:
     go: {fileID: 0}
     mat: {fileID: 0}
   - name: Fuselage
-    health: 10
+    health: 20
     protectedBy:
     - Wing L
     - Wing R
     go: {fileID: 0}
     mat: {fileID: 0}
   - name: Wing L
-    health: 20
+    health: 40
     protectedBy: []
     go: {fileID: 0}
     mat: {fileID: 0}
   - name: Wing R
-    health: 20
+    health: 40
     protectedBy: []
     go: {fileID: 0}
     mat: {fileID: 0}
